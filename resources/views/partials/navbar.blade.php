@@ -28,95 +28,12 @@
                             Login
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline btn-sm" href="{{ route('register') }}">
-                            <i class="far fa-right-to-bracket"></i>
-                            Register
-                        </a>
-                    </li>
                 </ul>
 
             @else
 
                 <ul class="navbar-nav ms-auto mb-lg-0 d-flex">
-                    <li class="nav-item">
-                        <div class="dropdown dropstart">
-                            <button type="button" class="btn btn-outline-dark btn-sm dropdown-toggle position-relative" data-bs-toggle="dropdown">
-                                <i class="far fa-cart-circle-arrow-up"></i> Cart
-                                <span class="cart-items position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">0
-                            <span class="visually-hidden">your cart</span>
-                          </span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <div class="shopping-cart active">
-                                    <div class="shopping-cart-header">
-                                        <i class="bi-cart me-1"></i>
-                                        <span class="badge bg-dark text-white ms-1 rounded-pill cart-items"></span>
-                                        <div class="shopping-cart-total">
-                                            <span class="lighter-text" id="total_cart">Total: </span>
-                                            <span class="main-color-text total"></span>
-                                        </div>
-                                    </div>
-
-                                    <ul class="shopping-cart-items text-decoration-none" id="cart-list">
-
-                                    </ul>
-                                    <div class="text-center">
-                                        <a href="{{ route('cart') }}" class="btn btn-outline-dark btn-sm">Show Cart <i class="bi bi-cart"></i></a>
-                                    </div>
-                                </div> <!--end shopping-cart -->
-                            </div>
-                        </div>
-
-                    </li>
-
-                    <li class="nav-item">
-                        <div class="dropdown dropstart">
-                            <button class="btn btn-outline btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" >
-                                <i class="fal fa-bell"></i>
-                                <span class="badge bg-dark text-white ms-1 rounded-pill">1</span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                                <div class="shopping-cart active">
-                                    <div class="shopping-cart-header">
-                                        Notifications
-                                    </div>
-                                    <ul class="list-group bg-light">
-                                        <a href="#" class="list-group-item list-group-item-action">dfsfsd</a>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="nav-item">
-                        <div class="dropdown dropstart">
-                            <button class="btn btn-outline btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" >
-                                <i class="fal fa-comment"></i>
-                                <span class="badge bg-dark text-white ms-1 rounded-pill">1</span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                                <div class="shopping-cart active">
-                                    <div class="shopping-cart-header">
-                                        Messages
-                                    </div>
-                                    <ul class="list-group bg-light">
-                                        <a href="#" class="list-group-item list-group-item-action">dfsfsd</a>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="nav-item">
-                        <button onclick="window.location='{{ route('profile') }}';" class="btn btn-outline btn-sm" type="button">
-                            <i class="fal fa-user"></i>
-                            Profile
-                        </button>
-                    </li>
-
+                   
                     <li class="nav-item">
                         <button onclick="window.location='{{ route('logout') }}';" class="btn btn-outline btn-sm" type="button">
                             <i class="fal fa-arrow-to-left"></i>
