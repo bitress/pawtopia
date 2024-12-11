@@ -16,28 +16,6 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
-
-    <style>
-        .rating:not(:checked) > input {
-            position: absolute;
-            appearance: none;
-        }
-
-        .rating:not(:checked) > label {
-            float: right;
-            cursor: pointer;
-            font-size: 20px;
-            color: #666;
-        }
-
-        .rating:not(:checked) > label:before {
-            content: '★';
-        }
-
-        .rating > input:checked ~ label {
-            color: #ffa723;
-        }
-    </style>
 </head>
 <body>
 
@@ -52,26 +30,6 @@
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <script src="{{ asset('assets/js/notyf.settings.js') }}"></script>
 
-<script>
-    var splide = new Splide('.splide', {
-        type: 'loop',
-        perPage: 3,
-        rewind: true,
-        breakpoints: {
-            640: {
-                perPage: 2,
-                gap: '.7rem',
-                height: '12rem',
-            },
-            480: {
-                perPage: 1,
-                gap: '.7rem',
-                height: '12rem',
-            },
-        }
-    });
-    splide.mount();
-</script>
 
 </body>
 </html>
