@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">Manage Customers
                 <div class="d-flex float-end">
-                    <a href="{{ route('customer.create') }}" class="btn btn-primary mb-3">Add New Product</a>
+                    <a href="{{ route('customer.create') }}" class="btn btn-primary mb-3">Add New Customer</a>
                 </div>
             </div>
             <div class="card-body">
@@ -22,7 +22,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Customer Name</th>
-                            <th scope="col">Custome Address</th>
+                            <th scope="col">Customer Address</th>
                             <th scope="col">Customer Image</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -37,7 +37,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('customer/edit', $customer->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="btn btn-sm btn-warning" onclick="confirmDelete({{ $product->id }})">
+                                        <a href="#" class="btn btn-sm btn-warning" onclick="confirmDelete({{ $customer->id }})">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </div>

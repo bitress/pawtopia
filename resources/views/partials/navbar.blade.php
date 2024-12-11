@@ -10,7 +10,7 @@
                     <a class="nav-link" href="{{ url('products') }}">Manage Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Manage Customer</a>
+                    <a class="nav-link" href="{{ url('customers')  }}">Manage Customer</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Manage Cart</a>

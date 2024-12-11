@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -22,7 +21,7 @@ Route::get('/product/create', [ProductController::class, 'create'])->name('produ
 Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
 
 // Customers Routing
-Route::get('/customers', [CustomerController::class, 'index'])->name('cart.index');
+Route::get('/customers', [CustomerController::class, 'index'])->name('customer.index');
 Route::get('/customer/edit/{id}', [CustomerController::class, 'edit'])->name('customer/edit');
 Route::put('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
 Route::get('/customer/delete/{id}', [CustomerController::class, 'destroy'])->name('customer.delete');
@@ -34,7 +33,9 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('cart', [CartController::class, 'showCart'])->name('cart');
+Route::post('/cart/add', [CartController::class, 'addToCart']);
+Route::post('/cart/remove', [CartController::class, 'removeFromCart']);
+Route::get('/cart/view/{customer_id}', [CartController::class, 'viewCart']);
 
 
 
