@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
+    public function index()
+    {
+        $carts = Cart::with('product')->get();
+        
+        return view('cart.view', compact('carts'));
+    }
     public function addToCart(Request $request)
     {
         $request->validate([
@@ -46,6 +53,12 @@ class CartController extends Controller
         $cartItems = Cart::where('customer_id', $customer_id)->get();
 
         return response()->json(['data' => $cartItems], 200);
+    }
+
+    public function viewAllCart()
+    {
+        $cart = Cart::with('product')->get();
+        return response()->json(['data' => $cart]);
     }
 
 }

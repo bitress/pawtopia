@@ -29,15 +29,18 @@ Route::get('/customer/create', [CustomerController::class, 'create'])->name('cus
 Route::post('/customer/store', [CustomerController::class, 'store'])->name('customer.store');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('login', [AuthController::class, 'login']);
+Route::post('login', [AuthController::class, 'proccessLogin']);
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
+// Cart API Routing
 Route::post('/cart/add', [CartController::class, 'addToCart']);
 Route::post('/cart/remove', [CartController::class, 'removeFromCart']);
 Route::get('/cart/view/{customer_id}', [CartController::class, 'viewCart']);
+Route::get('/cart/all', [CartController::class, 'viewAllCart']);
 
-
+// Cart Routing
+Route::get('/cart', [CartController::class, 'index']);
 
 //Route::get('about', function () {
 //    return view('about');

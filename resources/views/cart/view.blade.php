@@ -1,4 +1,5 @@
-
+@extends('layouts.app')
+@section('content')
 <div class="container mt-5">
     <h2>Your Shopping Cart</h2>
 
@@ -11,11 +12,11 @@
 </div>
 
 
-
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
 <script>
     $(document).ready(function() {
-        // Set up CSRF token for AJAX requests
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -24,8 +25,7 @@
 
         // Function to load cart items
         function loadCart() {
-            const customerId = '{{ $customer_id }}'; // Assuming you pass customer_id to the view
-            $.get(`/cart/view/${customerId}`, function(response) {
+            $.get('/cart/all', function(response) {
                 let cartHtml = '';
                 let total = 0;
 
@@ -70,54 +70,7 @@
             });
         }
 
-        // Load cart on page load
         loadCart();
-
-        // Add to cart
-        $(document).on('click', '.add-to-cart', function() {
-            const productId = $(this).data('product-id');
-            const customerId = '{{ $customer_id }}';
-
-            $.post('/cart/add', {
-                product_id: productId,
-                customer_id: customerId,
-                quantity: 1
-            }, function(response) {
-                loadCart();
-            });
-        });
-
-        // Remove from cart
-        $(document).on('click', '.remove-item', function() {
-            const productId = $(this).data('product-id');
-            const customerId = '{{ $customer_id }}';
-
-            $.post('/cart/remove', {
-                product_id: productId,
-                customer_id: customerId
-            }, function(response) {
-                loadCart();
-            });
-        });
-
-        // Update quantity
-        $(document).on('click', '.update-quantity', function() {
-            const productId = $(this).data('product-id');
-            const action = $(this).data('action');
-            const customerId = '{{ $customer_id }}';
-            const currentQuantity = $(this).siblings('input').val();
-            // Update quantity (continued)
-            let newQuantity = action === 'increase' ?
-                parseInt(currentQuantity) + 1 :
-                Math.max(1, parseInt(currentQuantity) - 1);
-
-            $.post('/cart/add', {
-                product_id: productId,
-                customer_id: customerId,
-                quantity: newQuantity
-            }, function(response) {
-                loadCart();
-            });
-        });
     });
 </script>
+@endsection

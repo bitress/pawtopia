@@ -13,7 +13,7 @@
                     <a class="nav-link" href="{{ url('customers')  }}">Manage Customer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Manage Cart</a>
+                    <a class="nav-link" href="{{ url('cart') }}">Manage Cart</a>
                 </li>
 
             </ul>
