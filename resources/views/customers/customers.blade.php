@@ -1,13 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <div class="container py-5">
-
-
         <div class="card">
-            <div class="card-header">Manage Customers
-                <div class="d-flex float-end">
-                    <a href="{{ route('customer.create') }}" class="btn btn-primary mb-3">Add New Customer</a>
-                </div>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3>Manage Customers</h3>
+                <a href="{{ route('customer.create') }}" class="btn btn-primary">Add New Customer</a>
             </div>
             <div class="card-body">
                 @if (session('success'))
@@ -17,10 +14,12 @@
                 @endif
 
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Password</th>
                             <th scope="col">Customer Name</th>
                             <th scope="col">Customer Address</th>
                             <th scope="col">Customer Image</th>
@@ -31,41 +30,39 @@
                         @forelse ($customers as $customer)
                             <tr>
                                 <td>{{ $customer->id }}</td>
+                                <td>{{ $customer->username }}</td>
+                                <td>{{ $customer->password }}</td>
                                 <td>{{ $customer->name }}</td>
                                 <td>{{ $customer->address }}</td>
-                                <td><img src="{{ $customer->image }}" class="w-25"></td>
+                                <td><img src="{{ $customer->image }}" class="img-fluid w-25"></td>
                                 <td>
-                                    <div class="btn-group">
-                                        <a href="{{ route('customer/edit', $customer->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="btn btn-sm btn-warning" onclick="confirmDelete({{ $customer->id }})">
-                                            <i class="fa fa-trash"></i>
+                                    <div class="btn-group" role="group">
+                                        <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-sm btn-primary">
+                                            <i class="fa fa-pencil-alt"></i>
                                         </a>
+                                        <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete({{ $customer->id }})">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6">No customers available.</td>
+                                <td colspan="7" class="text-center">No customers available.</td>
                             </tr>
                         @endforelse
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
-
     </div>
 
     <script>
         function confirmDelete(customerId) {
-            // Ask the user for confirmation before deleting
             if (confirm('Are you sure you want to delete this customer?')) {
-                // If confirmed, redirect to the delete route
                 window.location.href = '/customer/delete/' + customerId;
             }
         }
     </script>
-
-
 @endsection

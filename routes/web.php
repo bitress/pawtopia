@@ -22,7 +22,7 @@ Route::post('/product/store', [ProductController::class, 'store'])->name('produc
 
 // Customers Routing
 Route::get('/customers', [CustomerController::class, 'index'])->name('customer.index');
-Route::get('/customer/edit/{id}', [CustomerController::class, 'edit'])->name('customer/edit');
+Route::get('/customer/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
 Route::put('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
 Route::get('/customer/delete/{id}', [CustomerController::class, 'destroy'])->name('customer.delete');
 Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
