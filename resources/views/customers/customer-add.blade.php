@@ -37,7 +37,7 @@
 
                     <div class="form-group">
                         <label for="product_image">Customer Image URL</label>
-                        <input type="text" id="customer_image" name="customer_image" class="form-control" value="{{ old('customer_image') }}">
+                        <input type="text" id="image" name="image" class="form-control" value="{{ old('image') }}">
                         <small class="form-text text-muted">Enter the full URL for the product image (e.g., https://example.com/images/product.jpg).</small>
                     </div>
 

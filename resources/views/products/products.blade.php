@@ -35,7 +35,7 @@
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
                             <td><img src="{{ $product->product_image }}" class="w-25"></td>
-                            <td>{{ $product->price }}</td>
+                            <td>₱{{ $product->price }}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{{ route('product/edit', parameters: $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>

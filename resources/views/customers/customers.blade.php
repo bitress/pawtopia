@@ -18,8 +18,6 @@
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Password</th>
                             <th scope="col">Customer Name</th>
                             <th scope="col">Customer Address</th>
                             <th scope="col">Customer Image</th>
@@ -30,8 +28,6 @@
                         @forelse ($customers as $customer)
                             <tr>
                                 <td>{{ $customer->id }}</td>
-                                <td>{{ $customer->username }}</td>
-                                <td>{{ $customer->password }}</td>
                                 <td>{{ $customer->name }}</td>
                                 <td>{{ $customer->address }}</td>
                                 <td><img src="{{ $customer->image }}" class="img-fluid w-25"></td>

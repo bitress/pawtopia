@@ -25,16 +25,16 @@ class CustomerController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string',
-            'customer_image' => 'nullable|url',
+            'image' => 'nullable|url',
         ]);
 
         $product = Customer::create([
             'name' => $validatedData['name'],
             'address' => $validatedData['address'],
-            'customer_image' => $validatedData['customer_image'] ?? null,
+            'image' => $validatedData['image'] ?? null,
         ]);
 
-        return redirect()->route('product.index')->with('success', 'Customer added successfully!');
+        return redirect()->route('customer.index')->with('success', 'Customer added successfully!');
     }
 
     public function edit($id)

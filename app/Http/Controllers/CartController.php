@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Cart;
+use App\Models\Customer;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -9,56 +11,72 @@ class CartController extends Controller
 
     public function index()
     {
-        $carts = Cart::with('product')->get();
-        
-        return view('cart.view', compact('carts'));
+        $customers = Customer::all();
+        $products = Product::all();
+        $carts = Cart::with('customer', 'product')->get();
+
+        return view('cart.view', compact('customers', 'products', 'carts'));
     }
-    public function addToCart(Request $request)
+
+    public function adminAddToCart(Request $request)
     {
         $request->validate([
-            'product_id' => 'required|exists:products,id',
             'customer_id' => 'required|exists:customers,id',
+            'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $cartItem = Cart::updateOrCreate(
-            ['product_id' => $request->product_id, 'customer_id' => $request->customer_id],
-            ['quantity' => $request->quantity]
-        );
-
-        return response()->json(['message' => 'Product added to cart', 'data' => $cartItem], 200);
-    }
-
-    public function removeFromCart(Request $request)
-    {
-        $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'customer_id' => 'required|exists:customers,id',
-        ]);
-
-        $cartItem = Cart::where('product_id', $request->product_id)
-            ->where('customer_id', $request->customer_id)
+        $cartItem = Cart::where('customer_id', $request->customer_id)
+            ->where('product_id', $request->product_id)
             ->first();
 
         if ($cartItem) {
-            $cartItem->delete();
-            return response()->json(['message' => 'Product removed from cart'], 200);
+
+            $cartItem->quantity += $request->quantity;
+            $cartItem->save();
+            return redirect()->route('cart.index')->with('success', 'Quantity updated in cart!');
+        } else {
+
+            $cartItem = Cart::create([
+                'customer_id' => $request->customer_id,
+                'product_id' => $request->product_id,
+                'quantity' => $request->quantity,
+            ]);
+            return redirect()->route('cart.index')->with('success', 'Product added to cart!');
+        }
+    }
+
+
+
+
+
+    public function updateQuantity(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $cartItem = Cart::where('product_id', $request->product_id)
+            ->where('customer_id', auth()->id())
+            ->first();
+
+        if ($cartItem) {
+            $cartItem->update(['quantity' => $request->quantity]);
+            return response()->json(['message' => 'Cart updated successfully']);
         }
 
-        return response()->json(['message' => 'Product not found in cart'], 404);
+        return response()->json(['message' => 'Item not found in cart'], 404);
     }
 
-    public function viewCart(Request $request, $customer_id)
+    public function removeFromCart(Cart $cart)
     {
-        $cartItems = Cart::where('customer_id', $customer_id)->get();
 
-        return response()->json(['data' => $cartItems], 200);
+        $cart->delete();
+
+        return redirect()->route('cart.index')->with('success', 'Item removed from cart!');
     }
 
-    public function viewAllCart()
-    {
-        $cart = Cart::with('product')->get();
-        return response()->json(['data' => $cart]);
-    }
+
 
 }
