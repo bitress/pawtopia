@@ -38,10 +38,12 @@
                             <td>{{ $product->price }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('product/edit', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{ route('product/edit', parameters: $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
                                     <a href="#" class="btn btn-sm btn-warning" onclick="confirmDelete({{ $product->id }})">
                                         <i class="fa fa-trash"></i>
                                     </a>
+                                    <a href="#"><i class="fa fa-cart"></i></a>
+
                                 </div>
                             </td>
                         </tr>
