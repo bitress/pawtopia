@@ -62,4 +62,14 @@ class CustomerController extends Controller
         return redirect()->route('customer.index')->with('success', 'Customer updated successfully!');
 
     }
+
+    public function destroy($id)
+    {
+        $product = Customer::findOrFail($id);
+
+        $product->delete();
+
+        return redirect()->route('product.index')->with('success', 'Product deleted successfully!');
+    }
+
 }

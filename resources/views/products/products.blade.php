@@ -66,7 +66,7 @@
         // Ask the user for confirmation before deleting
         if (confirm('Are you sure you want to delete this product?')) {
             // If confirmed, redirect to the delete route
-            window.location.href = '/product/delete/' + productId;
+            window.location.href = 'product/delete/' + productId;
         }
     }
 </script>
